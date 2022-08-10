@@ -3,8 +3,6 @@ function Vehicle (model, year) {
     this.model = model;
     this.year = year;
 
-    return (this.model, this.year);
-
 };
 
 Vehicle.prototype.start = function(){
@@ -20,18 +18,21 @@ Vehicle.prototype.toString = function(){
 }
 
 function Car (model, year) {
-    this.numWheels = 4;
     Vehicle.call(this, model, year);
+    this.numWheels = 4;
 }
 
 Car.prototype = Object.create(Vehicle.prototype);
 
 function Motorcycle (model, year) {
-    this.numWheels = 2;
     Vehicle.call(this, model, year);
+    this.numWheels = 2;
 }
 
 Motorcycle.prototype = Object.create(Vehicle.prototype);
+
+Car.prototype.constructor = Car;
+Motorcycle.prototype.constructor = Motorcycle;
 
 
 const car = new Car('Tesla', 2020);
